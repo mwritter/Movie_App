@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/pages/landing.dart';
 
 void main() => runApp(MyApp());
 
@@ -7,16 +8,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Movie App',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Scaffold(
-        body: Center(
-          child: Text("Center",
-              style: TextStyle(fontSize: 35.0, color: Colors.grey)),
-        ),
-      ),
+      home: LandingPage(),
     );
   }
 }
