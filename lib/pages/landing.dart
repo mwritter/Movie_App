@@ -39,11 +39,12 @@ class LandingPage extends StatelessWidget {
         body: ListView(
           children: <Widget>[
             Container(
-              height: 250.0,
-              width: 300.0,
+              height: 150.0,
+              width: 250.0,
               child: HorizontalScroll(),
             ),
             MovieSection("What's New"),
+            MovieSection("Recommended for you"),
           ],
         ));
   }

@@ -20,7 +20,7 @@ class MovieSection extends StatelessWidget {
     return Container(
       padding: EdgeInsets.only(bottom: 5.0, left: 10.0, top: 10.0),
       width: size,
-      height: 175.0,
+      height: 155.0,
       child: Material(
         borderRadius: BorderRadius.circular(10.0),
         elevation: 3.0,
