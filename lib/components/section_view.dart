@@ -37,11 +37,15 @@ class MovieSection extends StatelessWidget {
           children: <Widget>[
             Row(
               children: <Widget>[
-                Text(title),
+                Text(
+                  title,
+                  style: TextStyle(fontFamily: 'OpenSans'),
+                ),
                 Spacer(),
                 Text(
                   "View All",
-                  style: TextStyle(color: Colors.blueAccent),
+                  style: TextStyle(
+                      color: Colors.blueAccent, fontFamily: 'OpenSans'),
                 ),
               ],
             ),

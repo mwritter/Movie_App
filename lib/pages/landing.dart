@@ -11,8 +11,20 @@ class LandingPage extends StatelessWidget {
           iconTheme: IconThemeData(color: Colors.grey),
           backgroundColor: Colors.transparent,
           elevation: 0.0,
-          title: Text("Play Movies",
-              style: TextStyle(color: Colors.red, fontSize: 35.0)),
+          title: Row(
+            children: <Widget>[
+              Text("Play ",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 30.0,
+                      fontFamily: 'OpenSans')),
+              Text("Movies",
+                  style: TextStyle(
+                      color: Colors.red,
+                      fontSize: 30.0,
+                      fontFamily: 'OpenSans')),
+            ],
+          ),
           actions: <Widget>[
             IconButton(
               onPressed: () {},
