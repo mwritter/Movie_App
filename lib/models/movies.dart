@@ -5,8 +5,9 @@ class Movie {
   String image;
   final String overview;
   String overviewShort;
+  double voteAverage;
 
-  Movie({this.overview, this.id, this.title, this.image}) {
+  Movie({this.overview, this.voteAverage, this.id, this.title, this.image}) {
     _imageWithURL();
     _twoLineOverview();
     _titleSizing();

@@ -4,6 +4,8 @@ import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
 import 'dart:ui';
 
+import 'package:movie_app/pages/detail.dart';
+
 class PopularScroll extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -17,16 +19,22 @@ class _PopularScrollState extends State<PopularScroll> {
   Widget _buildMoviePoster(Movie movie) {
     return Hero(
       tag: movie.id,
-      child: Material(
-        borderRadius: BorderRadius.circular(15),
-        elevation: 3.0,
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5.0),
-            image: DecorationImage(
-              alignment: Alignment.center,
-              image: NetworkImage(movie.image),
-              fit: BoxFit.cover,
+      child: GestureDetector(
+        onTap: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => DetailPage(movie)));
+        },
+        child: Material(
+          borderRadius: BorderRadius.circular(15),
+          elevation: 3.0,
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5.0),
+              image: DecorationImage(
+                alignment: Alignment.center,
+                image: NetworkImage(movie.image),
+                fit: BoxFit.cover,
+              ),
             ),
           ),
         ),
@@ -52,42 +60,51 @@ class _PopularScrollState extends State<PopularScroll> {
                   ),
                   Container(
                     padding: EdgeInsets.all(15.0),
-                    child: ClipRect(
-                      child: new BackdropFilter(
-                        filter:
-                            new ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
-                        child: new Container(
-                          margin: EdgeInsets.all(30.0),
-                          padding: EdgeInsets.all(10.0),
-                          width: 200.0,
-                          height: double.infinity,
-                          decoration: new BoxDecoration(
-                              color: Colors.grey.shade200.withOpacity(0.5)),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Text(
-                                movies[index].titleShort,
-                                style: TextStyle(
-                                  fontSize: 20.0,
-                                  fontFamily: 'OpenSans',
-                                  fontWeight: FontWeight.bold,
-                                  color: Color(0xFF270A41),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 10.0,
-                              ),
-                              Text(movies[index].overviewShort),
-                              Text(
-                                "Read more",
-                                style: TextStyle(
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    DetailPage(movies[index])));
+                      },
+                      child: ClipRect(
+                        child: new BackdropFilter(
+                          filter:
+                              new ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+                          child: new Container(
+                            margin: EdgeInsets.all(30.0),
+                            padding: EdgeInsets.all(10.0),
+                            width: 200.0,
+                            height: double.infinity,
+                            decoration: new BoxDecoration(
+                                color: Colors.grey.shade200.withOpacity(0.5)),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Text(
+                                  movies[index].titleShort,
+                                  style: TextStyle(
+                                    fontSize: 20.0,
                                     fontFamily: 'OpenSans',
                                     fontWeight: FontWeight.bold,
-                                    color: Color(0xFF706579)),
-                              ),
-                            ],
+                                    color: Color(0xFF270A41),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 10.0,
+                                ),
+                                Text(movies[index].overviewShort),
+                                Text(
+                                  "Read more",
+                                  style: TextStyle(
+                                      fontFamily: 'OpenSans',
+                                      fontWeight: FontWeight.bold,
+                                      color: Color(0xFF706579)),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -125,6 +142,7 @@ class _PopularScrollState extends State<PopularScroll> {
         id: jsonResponse['results'][i]['id'],
         image: jsonResponse['results'][i]['poster_path'],
         title: jsonResponse['results'][i]['title'],
+        voteAverage: jsonResponse['results'][i]['vote_average'],
         //voteAverage: jsonResponse['results'][i]['vote_average'])
       ));
     }
